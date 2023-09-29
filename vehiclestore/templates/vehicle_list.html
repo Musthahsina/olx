@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{%block title_block%}
+<title>Vehicle List</title>
+{%endblock%}
+
+{%block body_block%}
+{{request.user}}
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+
+            <table class="table table-striped">
+
+                    <tr>
+                        <td>Name</td>
+                        <td>Number</td>
+                        <td>Model</td>
+                        <td>Owner</td>
+                        <td>Kms/run</td>
+                        <td>Action</td>
+                    </tr>
+                    {%for vh in vehicles%}
+                        <tr>
+                            <td>{{vh.vehicle_name}}</td>
+                            <td>{{vh.vehicle_number}}</td>
+                            <td>{{vh.vehicle_model}}</td>
+                            <td>{{vh.owner_name}}</td>
+                            <td>{{vh.kms_run}}</td>
+                            <td>
+                                <a href="{%url 'vehicle-detail' vh.id %}" class="ms-1"><i class="fa-regular fa-eye fa-shake text-info"></i></a>
+                                <a href="{%url 'vehicle-delete' vh.id %}" class="ms-1"><i class="fa-solid fa-trash text-danger"></i></a>
+                                <a href="{%url 'vehicle-change' vh.id %}" class="ms-1"><i class="fa-solid fa-pen-to-square text-warning"></i></a>
+                            </td>
+                        </tr>
+                    {%endfor%}
+
+
+            </table>
+
+
+        </div>
+        <div class="col-2"></div>
+    </div>
+{%endblock%}
