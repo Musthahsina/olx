@@ -1,7 +1,5 @@
-
 from django import forms
 from vehiclestore.models import Vehicles
-
 from django.contrib.auth.models import User
 
 
@@ -35,6 +33,24 @@ class VehicleCreateForm(forms.ModelForm):
             "owner_name":forms.TextInput(attrs={"class":"form-control"}),
             "kms_run":forms.TextInput(attrs={"class":"form-control"}),
             
+
+            
+        }
+
+class VehicleChangeForm(forms.ModelForm):
+
+    class Meta:
+        model=Vehicles
+        fields="__all__"
+
+        widgets={
+            "vehicle_name":forms.TextInput(attrs={"class":"form-control"}),
+            "vehicle_number":forms.TextInput(attrs={"class":"form-control"}),
+            "vehicle_model":forms.TextInput(attrs={"class":"form-control"}),
+            "owner_name":forms.TextInput(attrs={"class":"form-control"}),
+            "kms_run":forms.TextInput(attrs={"class":"form-control"}),
+            "image":forms.FileInput(attrs={"class":"form-control"}),
+
 
             
         }

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path,include
 from vehiclestore.views import VehicleCreateView,VehicleListView,VehicleDetailView,VehicleUpdateView,VehicleDeleteView,SignUpView,SignInView,signout_view
 
 urlpatterns = [
@@ -30,6 +30,8 @@ urlpatterns = [
     path("signup",SignUpView.as_view(),name="register"),
     path("signin",SignInView.as_view(),name="signin"),
     path("signout",signout_view,name="signout"),
+    path('v1/vehicle/',include("vehiclestore2.urls")),
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

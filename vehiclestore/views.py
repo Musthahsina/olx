@@ -1,12 +1,12 @@
 from django.shortcuts import render,redirect
-
-# Create your views here.
-
 from vehiclestore.forms import VehicleCreateForm,RegistrationForm,LoginForm
 from django.views.generic import View
 from vehiclestore.models import Vehicles
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+
+
+# Create your views here.
 
 
 def signout_view(request,*args,**kwargs):
@@ -26,6 +26,7 @@ class SignUpView(View):
            return redirect("register")
        else:
            return render(request,"registration.html",{"form":form})
+            
 
 
 class SignInView(View):
@@ -41,8 +42,10 @@ class SignInView(View):
             usr=authenticate(request,username=uname,password=pwd)
             if usr:
                 login(request,usr)
-                return redirect("vehicle-list")
+                print("valid credentials")
+                return redirect("vehicle-add")
             else:
+                print("invalid credentials")
                 return render(request,"login.html",{"form":form})
 
 
